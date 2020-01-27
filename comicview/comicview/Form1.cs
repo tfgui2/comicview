@@ -55,7 +55,7 @@ namespace comicview
             this.Text = folder;
         }
 
-        private int showOne(int index)
+        private int loadOne(int index)
         {
             if (index < 0)
                 return index;
@@ -69,7 +69,7 @@ namespace comicview
             return index;
         }
 
-        private int showTwo(int index)
+        private int loadTwo(int index)
         {
             if (index < 0)
                 return index;
@@ -99,13 +99,13 @@ namespace comicview
         {
             if (m_pageviewcount == 1)
             {
+                loadOne(m_currentIndex);
                 pageOneLayout();
-                showOne(m_currentIndex);
             }
             else
             {
+                loadTwo(m_currentIndex);
                 pageTwoLayout();
-                showTwo(m_currentIndex);
             }
         }
 
