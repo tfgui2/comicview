@@ -64,6 +64,7 @@ namespace comicview
                 return index;
 
             pictureBox2.Load(m_files[index]);
+            this.Text = m_files[index];
             index++;
 
             return index;
@@ -78,6 +79,7 @@ namespace comicview
                 return index;
 
             pictureBox2.Load(m_files[index]);
+            this.Text = m_files[index];
             index++;
 
             if (index >= m_files.Length)
