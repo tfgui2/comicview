@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "comicview", "comicview\comicview.csproj", "{B4B2176B-EDBA-49E5-943E-171DD3E45659}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4B2176B-EDBA-49E5-943E-171DD3E45659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4B2176B-EDBA-49E5-943E-171DD3E45659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4B2176B-EDBA-49E5-943E-171DD3E45659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4B2176B-EDBA-49E5-943E-171DD3E45659}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5B47EAB-C71B-463B-97D9-F205385FE616}
+	EndGlobalSection
+EndGlobal
