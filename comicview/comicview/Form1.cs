@@ -27,7 +27,7 @@ namespace comicview
             {
                 string currentFile = openFileDialog1.FileName;
                 makeFileList(currentFile);
-                showTwo(m_currentIndex);
+                updateLayout();
             }
         }
 
@@ -55,6 +55,20 @@ namespace comicview
             this.Text = folder;
         }
 
+        private int showOne(int index)
+        {
+            if (index < 0)
+                return index;
+
+            if (index >= m_files.Length)
+                return index;
+
+            pictureBox2.Load(m_files[index]);
+            index++;
+
+            return index;
+        }
+
         private int showTwo(int index)
         {
             if (index < 0)
@@ -79,8 +93,44 @@ namespace comicview
         {
         }
 
+        private int m_pageviewcount = 2;
+
+        private void updateLayout()
+        {
+            if (m_pageviewcount == 1)
+            {
+                pageOneLayout();
+                showOne(m_currentIndex);
+            }
+            else
+            {
+                pageTwoLayout();
+                showTwo(m_currentIndex);
+            }
+        }
+
         private void Form1_ClientSizeChanged(object sender, EventArgs e)
         {
+            updateLayout();
+        }
+
+        private void pageOneLayout()
+        {
+            pictureBox1.Hide();
+
+            Image im2 = pictureBox2.Image;
+            if (im2 != null)
+            {
+                pictureBox2.Height = this.ClientSize.Height;
+                pictureBox2.Width = this.ClientSize.Width;
+                pictureBox2.Location = new Point(0, 0);
+            }
+        }
+
+        private void pageTwoLayout()
+        {
+            pictureBox1.Show();
+
             Image im1 = pictureBox1.Image;
             if (im1 != null)
             {
@@ -114,7 +164,7 @@ namespace comicview
                 }
                 else
                 {
-                    goNext(2);
+                    goNext(m_pageviewcount);
                 }
             }
 
@@ -126,23 +176,49 @@ namespace comicview
                 }
                 else
                 {
-                    goPrev(2);
+                    goPrev(m_pageviewcount);
                 }
             }
 
-            Form1_ClientSizeChanged(this, new EventArgs());
+            if (e.KeyCode == Keys.D1)
+            {
+                m_pageviewcount = 1;
+                updateLayout();
+            }
+            if (e.KeyCode == Keys.D2)
+            {
+                m_pageviewcount = 2;
+                updateLayout();
+            }
         }
 
         private void goNext(int step)
         {
             this.m_currentIndex += step;
-            showTwo(m_currentIndex);
+            updateLayout();
         }
 
         private void goPrev(int step)
         {
             this.m_currentIndex -= step;
-            showTwo(m_currentIndex);
+            updateLayout();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(" page move : left/right arrow \n 1page move : ctrl + left/right \n ");
+        }
+
+        private void pageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_pageviewcount = 1;
+            updateLayout();
+        }
+
+        private void pageToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            m_pageviewcount = 2;
+            updateLayout();
         }
     }
 }
