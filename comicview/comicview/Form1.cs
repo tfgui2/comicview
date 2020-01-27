@@ -31,19 +31,27 @@ namespace comicview
             }
         }
 
-        private string[] m_files;
+        // private string[] m_files;
+        private List<string> m_files = new List<string>();
         private int m_currentIndex = 0;
         private void makeFileList(string currentfile)
         {
+            m_files.Clear();
+
             string folder = Path.GetDirectoryName(currentfile);
             string[] files = Directory.GetFiles(folder);
-            //foreach (string name in files)
-            //{
-            //    string ext = Path.GetExtension(name).ToLower();
-            //    if ()
-            //}
-            m_files = files;
-            for (int i = 0; i < m_files.Length; i++)
+            foreach (string name in files)
+            {
+                string ext = Path.GetExtension(name).ToLower();
+                if (ext == ".jpg" || ext == ".png")
+                {
+                    this.m_files.Add(name);
+                }
+            }
+
+            //m_files = files;
+
+            for (int i = 0; i < m_files.Count(); i++)
             {
                 if (currentfile == m_files[i])
                 {
@@ -60,7 +68,7 @@ namespace comicview
             if (index < 0)
                 return index;
 
-            if (index >= m_files.Length)
+            if (index >= m_files.Count())
                 return index;
 
             pictureBox2.Load(m_files[index]);
@@ -75,14 +83,14 @@ namespace comicview
             if (index < 0)
                 return index;
 
-            if (index >= m_files.Length)
+            if (index >= m_files.Count())
                 return index;
 
             pictureBox2.Load(m_files[index]);
             this.Text = m_files[index];
             index++;
 
-            if (index >= m_files.Length)
+            if (index >= m_files.Count())
                 return index;
 
             pictureBox1.Load(m_files[index]);
